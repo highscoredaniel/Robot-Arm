@@ -1,6 +1,7 @@
-# Robot Arm
-# 20191126 Lee Dongju
-# Last updated: 20231107
+# Introduction
+#Robot Arm
+#20191126 Lee Dongju
+#Last updated: 20231107
 
 import pygame
 import numpy as np
@@ -23,7 +24,7 @@ RED = (255, 0, 0)
 WINDOW_WIDTH = 1400
 WINDOW_HEIGHT = 800
 
-
+# Define functions
 def Rmat(degree):
     rad = np.deg2rad(degree) 
     c = np.cos(rad)
@@ -213,7 +214,7 @@ def main():
         draw(X2, H61, screen, (0,255,0))
         pygame.display.flip()
         clock.tick(FPS)
-    # end of while
-# end of main()
+    #end of while
+#end of main()
 if __name__ == "__main__":
     main()
