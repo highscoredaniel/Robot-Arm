@@ -134,6 +134,7 @@ def main():
                     elif event.key == pygame.K_w:
                         jaVel3 = rotSpeed
                         sound2.play()
+                        
                 # when key released
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
