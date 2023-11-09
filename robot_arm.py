@@ -24,10 +24,6 @@ WINDOW_WIDTH = 1400
 WINDOW_HEIGHT = 800
 
 
-
-
-
-
 def Rmat(degree):
     rad = np.deg2rad(degree) 
     c = np.cos(rad)
@@ -52,9 +48,6 @@ def draw(P, H, screen, color=(100, 200, 200)):
     pygame.draw.polygon(screen, color=color, points=Ptransformed, width=3)
     return
 #
-
-#class Wings:
-    #
 
 def drawWings(screen, position, theta):
     H0 = Tmat(position[0], position[1])
@@ -153,11 +146,6 @@ def main():
                         jaVel3 = rotSpeed
                         sound2.play()
                     
-
-                        #if jointangle5 >= -130 or jointangle6 <= -50:
-                            #cAngleVel = 8
-                        #elif jointangle5 < -130 or jointangle6 > -50:
-                            #cAngleVel = 0
                 # when key released
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -188,12 +176,7 @@ def main():
         jointangle1 += jaVel1
         jointangle2 += jaVel2
         jointangle3 += jaVel3
-
-        print(jointangle1)
     
-
-        
-        
         theta += random.randrange(1,10)
 
         # drawing
@@ -202,8 +185,6 @@ def main():
         #initial position
         pygame.draw.circle(screen, (255,0,0), position, radius = 3)
         
-        
-
         #base
         H0 = Tmat(position[0], position[1]) @ Tmat(0, -h1)
         draw(X1, H0, screen, (0,255,0))
@@ -213,8 +194,6 @@ def main():
         x, y = H1[0,2], H1[1,2] #joint1
         H11 = H1 @ Rmat(-90) @ Tmat(0, -h1/2)
         pygame.draw.circle(screen, (255,0,0), (x,y), radius = 3)
-        #jointangle1 = wiggleCount * np.sin(np.deg2rad(tick))
-        # draw(X, H11, screen, (0,255,0))
         H12 = H11 @ Tmat(0,h1/2) @ Rmat(jointangle1) @ Tmat(0, -h1/2)
         draw(X1, H12, screen, (0,255,0))
 
@@ -222,7 +201,6 @@ def main():
         H2 = H12 @ Tmat(w1,0) @ Tmat(0, h1/2) #joint2
         x, y = H2[0,2], H2[1,2]
         pygame.draw.circle(screen, (255,0,0), (x,y), radius = 3)
-        #jointangle2 = wiggleCount * np.sin(np.deg2rad(tick)) #wiggle effect
         H21 = H2 @ Rmat(jointangle2) @ Tmat(0, -h1/2)
         draw(X1, H21, screen, (0,255,0))
 
@@ -230,7 +208,6 @@ def main():
         H3 = H21 @ Tmat(w1,0) @ Tmat(0, h1/2) #joint3
         x, y = H3[0,2], H3[1,2]
         pygame.draw.circle(screen, (255,0,0), (x,y), radius = 3)
-        #jointangle3 = wiggleCount * np.sin(np.deg2rad(tick)) #wiggle effect
         H31 = H3 @ Rmat(jointangle3) @ Tmat(0, -h1/2)
         draw(X1, H31, screen, (0,255,0))
 
@@ -254,18 +231,7 @@ def main():
         pygame.draw.circle(screen, (255,0,0), (x,y), radius = 3)
         H61 = H6 @ Rmat(jointangle6) @ Tmat(0, -h2/2)
         draw(X2, H61, screen, (0,255,0))
-
-
-       
-
-
-
-
-
-
-            
-        # pygame.draw.circle(screen, RED, (cx, cy), radius=3)
-        # finish
+        
         pygame.display.flip()
         clock.tick(FPS)
     # end of while
